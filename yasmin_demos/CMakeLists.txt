@@ -21,7 +21,7 @@ find_package(yasmin REQUIRED)
 find_package(yasmin_ros REQUIRED)
 find_package(yasmin_viewer REQUIRED)
 find_package(yasmin_factory REQUIRED)
-find_package(nav_msgs REQUIRED)
+find_package(nav2_msgs REQUIRED)
 find_package(example_interfaces REQUIRED)
 
 # C++
@@ -36,7 +36,7 @@ set(DEPENDENCIES
   yasmin_ros::yasmin_ros
   yasmin_viewer::yasmin_viewer
   yasmin_factory::yasmin_factory
-  ${nav_msgs_TARGETS}
+  ${nav2_msgs_TARGETS}
   ${example_interfaces_TARGETS}
 )
 set(DEPENDENCIES_PACKAGE
@@ -47,7 +47,7 @@ set(DEPENDENCIES_PACKAGE
   yasmin_ros
   yasmin_viewer
   yasmin_factory
-  nav_msgs
+  nav2_msgs
   example_interfaces
 )
 
@@ -148,6 +148,14 @@ add_executable(factory_demo src/factory_demo.cpp)
 target_link_libraries(factory_demo PUBLIC ${DEPENDENCIES})
 install(TARGETS
   factory_demo
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+#b2w integration
+add_executable(b2w_machine src/b2w_integration.cpp)
+target_link_libraries(b2w_machine PUBLIC ${DEPENDENCIES})
+install(TARGETS
+  b2w_machine
   DESTINATION lib/${PROJECT_NAME}
 )
 
